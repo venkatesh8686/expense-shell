@@ -26,10 +26,10 @@ fi
 VALIDATION(){
     if [ $1 -ne 0 ]
     then 
-        echo -e "$2 is....$R failed #N" &>> $LOG_FILES
+        echo -e "$2 is....$R failed $N" &>> $LOG_FILES
         exit 1
     else
-        echo -e "$2 is... $G SUCCUSS #N" | tee -a $LOG_FILES
+        echo -e "$2 is... $G SUCCUSS $N" | tee -a $LOG_FILES
     fi
 }
 
