@@ -34,17 +34,17 @@ VALIDATION(){
 
 echo "Shell scrtiping started working:: $(date)" | tee -a $LOG_FILES
 
-dnf install mysql-server -y
+dnf install mysql-server -y 
 VALIDATION $? "mysql is started installing"
 
-systemctl enable mysqld
+systemctl enable mysqld &>>$LOG_FILES
 VALIDATION $? "mysqsld is enable"
 
-systemctl start mysqld
-VALIDATION $? "mysql is started"
+systemctl start mysqld &>>$LOG_FILES
+VALIDATION $? "mysqld is started"
 
-systemctl status mysqld
-VALIDATION $? "Status of mysqlsd"
+# systemctl status mysqld
+# VALIDATION $? "Status of mysqlsd"&>>$LOG_FILES 
 
-mysql_secure_installation --set-root-pass ExpenseApp@1
+mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILES
 VALIDATION $? "Setting up of root passwords"
