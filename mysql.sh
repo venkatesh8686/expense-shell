@@ -46,11 +46,11 @@ VALIDATION $? "mysqld is started working"
 # systemctl status mysqld
 # VALIDATION $? "Status of mysqlsd"&>>$LOG_FILES 
 
-mysql -h mysql.vvsmgold.online -u root -pExpenseApp@1 -e "show database;"&>>$LOG_FILES 
+mysql -h mysql.vvsmgold.online -u root -pExpenseApp@1 -e "show database;" &>>$LOG_FILES 
 if [ $? -ne 0 ]
 then
-    echo "Mysql root password settingnow"
-    mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILES
+    echo "Mysql root password settingnow" &>>$LOG_FILES
+    mysql_secure_installation --set-root-pass ExpenseApp@1 
     VALIDATION $? "setting up root password"
 else
         echo -e "$Y mysql root password already setup..$Y skipping" | tee -a $LOG_FILES
