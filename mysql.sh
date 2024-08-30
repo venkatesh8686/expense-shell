@@ -26,9 +26,9 @@ fi
 VALIDATION(){
     if [ $1 -ne 0 ]
     then 
-        echo "$R $2 is.. .failed.. check the cmd " &>> $LOG_FILES
+        echo -e "$R $2 is.. .failed.. check the cmd " &>> $LOG_FILES
     else
-        echo "$G $2.. is installing" | tee -a $LOG_FILES
+        echo -e "$G $2.. is installing" | tee -a $LOG_FILES
     fi
 }
 
@@ -46,5 +46,12 @@ VALIDATION $? "mysqld is started"
 # systemctl status mysqld
 # VALIDATION $? "Status of mysqlsd"&>>$LOG_FILES 
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILES
-VALIDATION $? "Setting up of root passwords"
+mysql_secure_installation --set-root-pass ExpenseApp@1 -e "show databases;"
+    if [ $? -ne 0 ]
+    then
+        echo "Mysql root password settingnow"
+        mysql_secure_installation --set-root-pass ExpenseApp@1
+        VALIDATION $? "setting up root password"
+    else
+        echo -e "$Y mysql root password already exit"
+    fi
