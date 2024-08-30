@@ -28,20 +28,20 @@ VALIDATION(){
     then 
         echo -e "$R $2 is.. .failed.. check the cmd " &>> $LOG_FILES
     else
-        echo -e "$G $2.. is installing" | tee -a $LOG_FILES
+        echo -e "$G $2.. installed" | tee -a $LOG_FILES
     fi
 }
 
 echo "Shell scrtiping started working:: $(date)" | tee -a $LOG_FILES
 
 dnf install mysql-server -y 
-VALIDATION $? "mysql is started installing"
+VALIDATION $? "mysql is started"
 
 systemctl enable mysqld &>>$LOG_FILES
 VALIDATION $? "mysqsld is enable"
 
 systemctl start mysqld &>>$LOG_FILES
-VALIDATION $? "mysqld is started"
+VALIDATION $? "mysqld is started working"
 
 # systemctl status mysqld
 # VALIDATION $? "Status of mysqlsd"&>>$LOG_FILES 
