@@ -46,7 +46,7 @@ VALIDATION $? "mysqld is started working"
 # systemctl status mysqld
 # VALIDATION $? "Status of mysqlsd"&>>$LOG_FILES 
 
-mysql -h mysql.vvsmgold.online -u root -pExpenseApp@1 -e "show database;" &>>$LOG_FILES 
+mysql -h mysql.vvsmgold.online -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILES 
 if [ $? -ne 0 ]
 then
     echo "Mysql root password settingnow" &>>$LOG_FILES
