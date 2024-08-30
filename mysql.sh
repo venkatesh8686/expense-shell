@@ -51,7 +51,7 @@ if [ $? -ne 0 ]
 then
     echo "Mysql root password settingnow" &>>$LOG_FILES
     mysql_secure_installation --set-root-pass ExpenseApp@1 
-    VALIDATION $? "setting up root password"
+    VALIDATION $? "setting up root password" 
 else
-        echo -e "$Y mysql root password already setup..$Y skipping" | tee -a $LOG_FILES
+    echo -e "$Y mysql root password already setup.. $Y skipping #N" | tee -a $LOG_FILES
 fi
