@@ -53,3 +53,15 @@ then
 else
     echo -e "Expense user already extis....$Y skipping $N"
 fi
+
+mkdir -p /app
+VALIDATION $? "Creating one Dir"
+
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>> $LOG_FILES
+VALIDATION $? "Downloading the backend application code"
+
+cd /app
+VALIDATION $? 
+unzip /tmp/backend.zip
+VALIDATION $? "Extracting backend code"
+
