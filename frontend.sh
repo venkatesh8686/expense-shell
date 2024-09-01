@@ -57,4 +57,3 @@ VALIDATION $? "Extracing frontend code"
 
 systemctl restart nginx
 VALIDATION $? "Restarting nginx"
-
