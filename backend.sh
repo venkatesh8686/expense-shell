@@ -44,5 +44,12 @@ VALIDATION $? "Enable nodejs"
 dnf install nodejs -y &>> $LOG_FILES
 VALIDATION $? "Installing nodejs"
 
-useradd expense 
-VALIDATION $? "Creating expense user "
+id expense &>> $LOG_FILES
+if [ $? -ne 0 ]
+then 
+    echo -e "expense user not exits ....$G Creating user $N"
+    useradd expense &>> $LOG_FILES
+    VALIDATION $? "Creating expense user "
+else
+    echo " Expense user already extis"
+fi
