@@ -60,7 +60,8 @@ VALIDATION $? "Creating /app folder"
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>> $LOG_FILES
 VALIDATION $? "Downloading the backend application code"
 
-cd /app
+cd /app || exit
+echo $? "....?"
 #rm -rf /app/* #remving all files adding new vesrion  
 unzip /tmp/backend.zip &>> $LOG_FILES
 VALIDATION $? "Extracting backend code"
