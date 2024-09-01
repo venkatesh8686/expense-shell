@@ -44,5 +44,5 @@ VALIDATION $? "Enable nodejs"
 dnf install nodejs -y &>> $LOG_FILES
 VALIDATION $? "Installing nodejs"
 
-useradd expense &>> $LOG_FILES
+useradd expense 
 VALIDATION $? "Creating expense user "
