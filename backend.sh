@@ -66,3 +66,9 @@ rm -rf /app/* #remving all files adding new vesrion
 unzip /tmp/backend.zip &>> $LOG_FILES
 VALIDATION $? "Extracting backend code"
 
+npm install &>> $LOG_FILES
+pwd
+VALIDATION $? "installing npm"
+
+
+
