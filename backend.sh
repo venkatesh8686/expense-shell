@@ -61,8 +61,7 @@ curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expen
 VALIDATION $? "Downloading the backend application code"
 
 cd /app
-rm -rf /app/* #remving all files adding new vesrion
-VALIDATION $?  
+#rm -rf /app/* #remving all files adding new vesrion  
 unzip /tmp/backend.zip &>> $LOG_FILES
 VALIDATION $? "Extracting backend code"
 
