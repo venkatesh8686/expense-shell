@@ -69,6 +69,24 @@ VALIDATION $? "Extracting backend code"
 npm install &>> $LOG_FILES
 pwd
 VALIDATION $? "installing npm"
+cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.service
+
+#load the data before running the backend
+
+dnf install mysql -y &>> $LOG_FILES
+VALIDATION $? "Installing mysql clinet"
+
+mysql -h mysql.vvsmgold.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
+VALIDATION $? "Schema is loading"
+
+systemctl daemon-reload &>> $LOG_FILES
+VALIDATION $? "Realoading daemon"
+
+systemctl enable backend &>> $LOG_FILES
+VALIDATION $? "Enable backend"
+
+systemctl restart backend &>> $LOG_FILES
+VALIDATION $? "Satrting the backend"
 
 
 
