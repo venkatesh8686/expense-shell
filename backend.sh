@@ -35,14 +35,14 @@ VALIDATION(){
 
 echo "Shell scrtiping started working:: $(date)" | tee -a $LOG_FILES
 
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>> $LOG_FILES
 VALIDATION $? "Disabling nodjs"
 
-dnf module enable nodejs:20 -y
+dnf module enable nodejs:20 -y &>> $LOG_FILES
 VALIDATION $? "Enable nodejs"
 
-dnf install nodejs -y
+dnf install nodejs -y &>> $LOG_FILES
 VALIDATION $? "Installing nodejs"
 
-useradd expense
-VALIDATION $? "adding user "
+useradd expense &>> $LOG_FILES
+VALIDATION $? "Creating expense user "
